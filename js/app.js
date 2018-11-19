@@ -3,7 +3,6 @@ var App = function() {
     var settings = {
         csvInput: $('.csv-file'),
         reader: new FileReader(),
-            uploadUrl: 'uploader.php',
         document: $(document),
         actionBtns: $('.action-btns'),
         dwldCsvBtn: $('.gen-csv'),
@@ -20,11 +19,11 @@ var App = function() {
     function _generateCSV(button) {
         href = button.attr('href');
 
-        var heads = $('.table-responsive table thead th').map(function(index, head) {
+        var heads = $('.page-wrap table thead th').map(function(index, head) {
                 return $(head).text();
             });
 
-        var csvData = $('.table-responsive table tbody tr').map(function(i, v) {
+        var csvData = $('.page-wrap table tbody tr').map(function(i, v) {
                 var $td = $('td', this);
                 var csvObj = { };
 
@@ -40,7 +39,7 @@ var App = function() {
 
         /*Title*/
         for ( let i = 0; i < heads.length; i++ ) {
-            data += heads[i] + ';'
+            data += (i>0 ? ';' : '') + heads[i]
         }
 
         /*Body*/
@@ -56,7 +55,7 @@ var App = function() {
 
                     /*Same older with title*/
                     for ( var a in line ) {
-                        data += line[a] + ';'
+                        data += (i > 0 ? ';' : '') + line[a]
                     }
                 }
             } else if ( settings.csvInput[0].files[0].name.match('codecList_') ) {
@@ -64,7 +63,7 @@ var App = function() {
 
                 /*Same older with title*/
                 for ( var a in line ) {
-                    data += line[a] + ';'
+                    data += (i > 0 ? ';' : '') + line[a]
                 }
             }
         })
