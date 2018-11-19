@@ -1,0 +1,87 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px 0px 0px 0px;
+}
+
+.slideout-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 256px;
+  overflow-y: no-scroll;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+  background-color: #99CCCC;
+
+  -webkit-box-shadow:inset 0 0 10px gray;
+  -moz-box-shadow:inset 0 0 10px gray;
+  box-shadow:inset 0 0 10px gray;
+
+}
+
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  background-color: #FDFDFD;
+  height: 100%;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}
+
+.toggle-button {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  z-index: 10;
+  opacity: 0.6;
+  will-change: transform;
+  background: url(image/sidebar.png);
+  border: 0px;
+  outline:0 none !important;
+}
+
+.toggle-button:hover{
+  opacity: 1.0;
+  border: 0px;
+}
+
+.page-wrap {
+  display: inline-block;
+  height: 100%;
+  overflow: auto;
+}
+
+.table {
+  border-spacing: 0px 0px;
+}
+
+table th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-spacing: 0px;
+}
+
+th {
+  background-color: #1976D2;
+  color: #fff;
+}
+
+th, td {
+  padding: 1em .5em;
+  border: solid #000 1px;
+}
