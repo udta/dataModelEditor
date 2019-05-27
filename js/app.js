@@ -115,6 +115,7 @@ var App = function() {
         var result = event.target.result,
             fileName = settings.csvInput[0].files[0].name;
 
+	var lastObjectName = null;
         var lastName = null;
         var lastColor = 'white';
         let title = true;
@@ -137,6 +138,7 @@ var App = function() {
 
                 if ( line.match(";object;") ) {
                     data += '<tr style="background:yellow">'
+                    lastObjectName = array[0]
                 } else {
                     /*TODO:相同名字用相同颜色, 不同名字间隔使用白色和另一种颜色*/
                     
@@ -155,13 +157,13 @@ var App = function() {
                 let index = 0;
                 let paramName = '';
                 array.forEach(p => {
-                    index++
-                    if ( index === 1 /*|| index === 8 || index === 9*/ ) {
-                        data += '<td contenteditable="true" style="word-break: keep-all; white-space: nowrap;">' + p + '</td>'
+                    if ( index === 0 /*|| index === 7 || index === 8*/ ) {
+                        data += '<td contenteditable="true" style="word-break: keep-all; white-space: nowrap;" data-tippy-content="' + lastObjectName + '">' + p + '</td>'
                         paramName = p;
                     } else {
-                        data += '<td contenteditable="true" data-tippy-content="' + paramName + '">' + p + '</td>'
+                        data += '<td contenteditable="true" data-tippy-content="' + lastObjectName + paramName + '">' + p + '</td>'
                     }
+		    index++
                 })
 
                 data += '</tr>'
