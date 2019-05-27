@@ -42,12 +42,11 @@ var App = function() {
             data += (i>0 ? ';' : '') + heads[i]
         }
 
-        /*Body*/
+        /*Body*/        
         csvData.forEach(line => {
-
+            let j = 0; 
             if ( settings.csvInput[0].files[0].name.match('dataModel_') ) {
                 if ( (line['NAME'] === undefined || line['NAME'] === '') ) {
-                    //TODO... maybe we need a warning!!
                     console.warn("Name is empty !!!!!!!!!!")
                 } else {
 
@@ -55,15 +54,19 @@ var App = function() {
 
                     /*Same older with title*/
                     for ( var a in line ) {
-                        data += (i > 0 ? ';' : '') + line[a]
+                        data += (j > 0 ? ';' : '') + line[a]
+                        j++
                     }
                 }
             } else if ( settings.csvInput[0].files[0].name.match('codecList_') ) {
+
+                //TODO.....
                 data += '\n';
 
                 /*Same older with title*/
                 for ( var a in line ) {
-                    data += (i > 0 ? ';' : '') + line[a]
+                    data += (j > 0 ? ';' : '') + line[a]
+                    j++
                 }
             }
         })
